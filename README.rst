@@ -24,4 +24,3 @@ Installation
 To install the theme, just download or git clone it, unzip it in the "themes" folder of your Ubooquity program. Select this theme in the Ubooquity admin page. And push "save ans restart" button on the top right of the admin page.
 
 If your Ubooquity library is quite old (> 1 year ?) and/or quite big (>2000 comics) and you want to speed up the creation of the lists, you could rebuil the database (Ubooquity admin, at your own risks).
-
