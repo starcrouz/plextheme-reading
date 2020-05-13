@@ -3282,6 +3282,9 @@
                         u = u.split("/")[1] || "", i = '<li><a class="home-btn" href="/' + u + '"><i class="glyphicon home"></i></a></li>'
                     }
 		    e = cookie_script + e;
+		    (n = "hidden"), o()(".sectiontitle").first().before(function() {
+			return '<div class="sectiontitle">Click Book</div><label class="radiolabel"><input type="radio" id="click_book_open" name="clickbook" value="open" onclick="deleteCookie(\'clickbook\');setCookie(\'clickbook\', \'open\', {\'max-age\': 10000000});location.reload();"></input>Open</label><label class="radiolabel"><input type="radio" id="click_book_popup" name="clickbook" value="popup" onclick="deleteCookie(\'clickbook\');setCookie(\'clickbook\', \'popup\', {\'max-age\': 10000000});location.reload();" checked="true"></input>Popup</label></input><br/><br/><div class="sectiontitle">Page Navigation</div><label class="radiolabel"><input type="radio" id="navigation_top" name="pagenavigation" value="top" onclick="deleteCookie(\'navigation\');setCookie(\'navigation\', \'top\', {\'max-age\': 10000000});location.reload();"></input>Top</label><label class="radiolabel"><input type="radio" id="navigation_bottom" name="pagenavigation" value="bottom" onclick="deleteCookie(\'navigation\');setCookie(\'navigation\', \'bottom\', {\'max-age\': 10000000});location.reload();" checked="true"></input>Bottom</label><label class="radiolabel"><input type="radio" id="navigation_both" name="pagenavigation" value="both" onclick="deleteCookie(\'navigation\');setCookie(\'navigation\', \'both\', {\'max-age\': 10000000});location.reload();"></input>Both</label><br/><br/><hr>'
+		    })
                     s.hide().after(this.template(e, t, r, n, i, a))
                 }
             }, {
@@ -3297,12 +3300,12 @@
                             var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "",
                                 t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "",
                                 n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "";
-                            return '\n                <div class="pagination" ' + (arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : "") + ">\n                    " + t + " " + e + " " + n + "\n                </div>\n            "
+                            return '\n                <div  id="pagination_bottom" style="display:visible" class="pagination" ' + (arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : "") + ">\n                    " + t + " " + e + " " + n + "\n                </div>\n            "
                         }(r, e, t, n)) || (n = "hidden"), o()(".navigation").after(function() {
                             var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "",
                                 t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "",
                                 n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "";
-                            return '\n                <div class="pagination" ' + (arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : "") + ">\n                    " + t + " " + e + " " + n + "\n                </div>\n            "
+                            return '\n                <div  id="pagination_top" style="display:visible" class="pagination" ' + (arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : "") + ">\n                    " + t + " " + e + " " + n + "\n                </div>\n            "
                         }(r, e, t, n))
                     }
                 }
@@ -3619,6 +3622,28 @@ Reading.mark = [];
 	}
     // Start polling...
     checkReady(function($) {
+
+	//Set 'clickbook' settings based on cookie
+	var click_book_cookie = document.cookie.match('(^|;) ?' + "clickbook" + '=([^;]*)(;|$)');
+	if (click_book_cookie != null){
+		$("#click_book_" + click_book_cookie[2]).prop("checked", true);
+	}
+
+	//Set 'navigation' settings based on cookie AND apply navigation settings
+	var navigation_cookie = document.cookie.match('(^|;) ?' + "navigation" + '=([^;]*)(;|$)');
+	if (navigation_cookie != null){
+		$("#navigation_" + navigation_cookie[2]).prop("checked", true);
+		if (navigation_cookie[2] == "top") {
+			$("#pagination_top").css("display","visible");
+			$("#pagination_bottom").css("display","none");
+		} else if (navigation_cookie[2] == "bottom"){
+			$("#pagination_bottom").css("display","visible");
+			$("#pagination_top").css("display","none");
+		} else if (navigation_cookie[2] == "both"){
+			$("#pagination_bottom").css("display","visible");
+			$("#pagination_top").css("display","visible");
+		}
+	}
         //////////////////////////////////
         //Add currently reading condition to comic
         //////////////////////////////////
@@ -3659,16 +3684,18 @@ Reading.mark = [];
             json_url = window.location.origin+"/user-api/bookmark?docId="+comicid[2];
             console.log("url: "+json_url);
 		  
-	    //placeholder for opening book immediately for reading
-            //Get settings.
-            //if (settings == open_book_to_read_immediately){
-	    	//var html_url = window.location.origin + "/comicdetails/" + comicid[2];
-		//$.get(html_url, function( data_comicdetails ) {
-			//var total_pages = $(data_comicdetails).find("#details_size").text().split("page")[0] * 1;
-			//$("img[src*='"+comicid[2]+"']").parent().prop("href","/comicreader/reader.html#?docId=" + comicid[2] + "&startIndex=0&type=comic&nbPages=" + total_pages + "&storeBookmarksInCookies=false");
-			//$("img[src*='"+comicid[2]+"']").parent().prop("onclick","");
-		//});  
-	    //}
+	    //Check cookie settings for clickng books and set to open book directly or show popup
+	    var my_cookie = document.cookie;
+	    if (my_cookie.match('(^|;) ?' + "clickbook" + '=([^;]*)(;|$)') != null){
+		if  (my_cookie.match('(^|;) ?' + "clickbook" + '=([^;]*)(;|$)')[2] == "open"){
+			var html_url = window.location.origin + "/comicdetails/" + comicid[2];
+			$.get(html_url, function( data_comicdetails ) {
+				var total_pages = $(data_comicdetails).find("#details_size").text().split("page")[0] * 1;
+				$("img[src*='"+comicid[2]+"']").parent().prop("href","/comicreader/reader.html#?docId=" + comicid[2] + "&startIndex=0&type=comic&nbPages=" + total_pages + "&storeBookmarksInCookies=false");
+				$("img[src*='"+comicid[2]+"']").parent().prop("onclick","");
+			});
+		};
+	    }
 
             $.getJSON( json_url, function() {
                 console.log( "success" );
