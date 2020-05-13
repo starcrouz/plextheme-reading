@@ -3267,7 +3267,8 @@
                         n = '<li><a href="./?logout=true" title="Logout"><i class="glyphicon log-out"></i></a></li>',
                         r = "<li><a href=\"#\" title=\"Settings\" onclick=\"showHidePopupMenu('settingsbox','pageselector','searchbox','comicdetails');return false;\"><i class=\"glyphicon settings\"></i></a></li>",
                         i = '<li><a class="home-btn" href="' + window.location.href + '"><i class="glyphicon home"></i></a></li>',
-                        a = "";
+                        a = "",
+			cookie_script = "<script>function setCookie(name, value, options = {}) {options = {path: '/',...options};if (options.expires instanceof Date) {options.expires = options.expires.toUTCString();}let updatedCookie = encodeURIComponent(name) + '=' + encodeURIComponent(value);for (let optionKey in options) {updatedCookie += '; ' + optionKey;let optionValue = options[optionKey];if (optionValue !== true) {updatedCookie += '=' + optionValue;}}document.cookie = updatedCookie;}function deleteCookie(name) {setCookie(name, '', {'max-age': -1})}</script>";
                     this.template = function() {
                         var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "",
                             t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "",
@@ -3280,6 +3281,7 @@
                         var u = o()("#arrowup").attr("href");
                         u = u.split("/")[1] || "", i = '<li><a class="home-btn" href="/' + u + '"><i class="glyphicon home"></i></a></li>'
                     }
+		    e = cookie_script + e;
                     s.hide().after(this.template(e, t, r, n, i, a))
                 }
             }, {
