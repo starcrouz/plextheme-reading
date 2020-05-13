@@ -1,5 +1,5 @@
 ##########################
-Ubooquity Plex Based Theme moded by Starcrouz
+Ubooquity enhanced Plex based theme with all currently reading comics list and more
 ##########################
 
 I like a lot Ubooquity to acces all my comics but I miss a lot a "currently reading" list of comics.
