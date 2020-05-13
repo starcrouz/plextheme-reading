@@ -3656,6 +3656,17 @@ Reading.mark = [];
             //get comic meta from server
             json_url = window.location.origin+"/user-api/bookmark?docId="+comicid[2];
             console.log("url: "+json_url);
+		  
+	    //placeholder for opening book immediately for reading
+            //Get settings.
+            //if (settings == open_book_to_read_immediately){
+	    	//var html_url = window.location.origin + "/comicdetails/" + comicid[2];
+		//$.get(html_url, function( data_comicdetails ) {
+			//var total_pages = $(data_comicdetails).find("#details_size").text().split("page")[0] * 1;
+			//$("img[src*='"+comicid[2]+"']").parent().prop("href","/comicreader/reader.html#?docId=" + comicid[2] + "&startIndex=0&type=comic&nbPages=" + total_pages + "&storeBookmarksInCookies=false");
+			//$("img[src*='"+comicid[2]+"']").parent().prop("onclick","");
+		//});  
+	    //}
 
             $.getJSON( json_url, function() {
                 console.log( "success" );
