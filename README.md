@@ -1,7 +1,7 @@
 # Ubooquity enhanced Plex based theme with all currently reading comics list and more
 
 
-I like a lot Ubooquity to acces all my comics but I miss a lot a "currently reading" list of comics.
+Ubooquity is great to acces all your comics library from your tablet or computer but the missing piece was a "currently reading" list of comics.
 
 This theme intend to add this fonctionnality and some more :
 - show all currently reading comics
@@ -15,7 +15,7 @@ To use these features, it is very easy :
 - if a comic bookmark is at the last page, it is considered as "read"
 - if a comic bookmark is between page 3 and last page - 1, it is considered as "currenly reading"
 
-Because Ubooquity program doesn't provide a way to list all currently reading comics by itself, this theme needs to scan the database (through some API) comic by comic which take time (around 10s for 1000 comics). To avoid scanning each time, I added a cache. Then it is fast to get the currently reading comics. And you could clear the cache from time to time when it is too old (update link).
+Because Ubooquity program doesn't provide a way to list all currently reading comics by itself, this theme needs to scan the database (through some API) comic by comic which take time (around 10s for 1000 comics). To avoid scanning each time, there is now a cache system included. Then it is fast to get the currently reading comics. And you could clear the cache from time to time when it is too old (update link).
 
 # Installation
 
