@@ -3283,7 +3283,7 @@
                     }
 		    e = cookie_script + e;
 		    o()(".sectiontitle").first().before(function() {
-			return '<div class="sectiontitle">Click Book</div><label class="radiolabel"><input type="radio" id="click_book_open" name="clickbook" value="open" onclick="deleteCookie(\'clickbook\');setCookie(\'clickbook\', \'open\', {\'max-age\': 10000000});location.reload();"></input>Open</label><label class="radiolabel"><input type="radio" id="click_book_popup" name="clickbook" value="popup" onclick="deleteCookie(\'clickbook\');setCookie(\'clickbook\', \'popup\', {\'max-age\': 10000000});location.reload();" checked="true"></input>Popup</label></input><br/><br/><div class="sectiontitle">Page Navigation</div><label class="radiolabel"><input type="radio" id="navigation_top" name="pagenavigation" value="top" onclick="deleteCookie(\'navigation\');setCookie(\'navigation\', \'top\', {\'max-age\': 10000000});location.reload();"></input>Top</label><label class="radiolabel"><input type="radio" id="navigation_bottom" name="pagenavigation" value="bottom" onclick="deleteCookie(\'navigation\');setCookie(\'navigation\', \'bottom\', {\'max-age\': 10000000});location.reload();" checked="true"></input>Bottom</label><label class="radiolabel"><input type="radio" id="navigation_both" name="pagenavigation" value="both" onclick="deleteCookie(\'navigation\');setCookie(\'navigation\', \'both\', {\'max-age\': 10000000});location.reload();"></input>Both</label><br/><br/><hr>'
+			return '<div class="sectiontitle">Click Book</div><label class="radiolabel"><input type="radio" id="click_book_open" name="clickbook" value="open" onclick="deleteCookie(\'clickbook\');setCookie(\'clickbook\', \'open\', {\'max-age\': 10000000});location.reload();"></input>Open</label><label class="radiolabel"><input type="radio" id="click_book_popup" name="clickbook" value="popup" onclick="deleteCookie(\'clickbook\');setCookie(\'clickbook\', \'popup\', {\'max-age\': 10000000});location.reload();" checked="true"></input>Popup</label></input><br/><br/><div class="sectiontitle">Page Navigation</div><label class="radiolabel"><input type="radio" id="navigation_top" name="pagenavigation" value="top" onclick="deleteCookie(\'navigation\');setCookie(\'navigation\', \'top\', {\'max-age\': 10000000});location.reload();"></input>Top</label><label class="radiolabel"><input type="radio" id="navigation_bottom" name="pagenavigation" value="bottom" onclick="deleteCookie(\'navigation\');setCookie(\'navigation\', \'bottom\', {\'max-age\': 10000000});location.reload();"></input>Bottom</label><label class="radiolabel"><input type="radio" id="navigation_both" name="pagenavigation" value="both" onclick="deleteCookie(\'navigation\');setCookie(\'navigation\', \'both\', {\'max-age\': 10000000});location.reload();" checked="true"></input>Both</label><br/><br/><hr>'
 		    })
                     s.hide().after(this.template(e, t, r, n, i, a))
                 }
@@ -3643,7 +3643,12 @@ Reading.mark = [];
 			$("#pagination_bottom").css("display","visible");
 			$("#pagination_top").css("display","visible");
 		}
+	} else {
+		//else show both top and bottom by default if no cookies present
+		$("#pagination_top").css("display","visible");
+		$("#pagination_bottom").css("display","visible");
 	}
+	    
         //////////////////////////////////
         //Add currently reading condition to comic
         //////////////////////////////////
