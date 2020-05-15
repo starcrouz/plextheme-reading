@@ -860,6 +860,20 @@ body {
     outline: 0
 }
 
+.pagination_top {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.pagination_top a {
+    margin: 0 10px
+}
+
+.pagination_top a:active,.pagination_top a:focus,.pagination_top a:hover {
+    text-decoration: none;
+    outline: 0
+}
+
 .actionbutton,.btn-link {
     font-family: Open Sans Bold;
     color: #fff;
