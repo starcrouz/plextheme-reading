@@ -3305,7 +3305,7 @@
                             var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "",
                                 t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "",
                                 n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "";
-                            return '\n                <div  id="pagination_top" style="display:visible" class="pagination" ' + (arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : "") + ">\n                    " + t + " " + e + " " + n + "\n                </div>\n            "
+                            return '\n                <div  id="pagination_top" style="display:visible" class="pagination_top" ' + (arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : "") + ">\n                    " + t + " " + e + " " + n + "\n                </div>\n            "
                         }(r, e, t, n))
                     }
                 }
