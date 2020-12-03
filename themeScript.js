@@ -3653,7 +3653,7 @@ Reading.mark = [];
         //Add currently reading condition to comic
         //////////////////////////////////
 		var last_book_name = ""; // Used by the de-duplicator
-		var last_book_file_format = "";
+        var last_book_file_format = "";
         $('.thumb a img').each(function(){
           raw_src = $(this).attr('src')
           page_num = '0';
@@ -3663,7 +3663,7 @@ Reading.mark = [];
           } else {
           //extract Comic ID
             thing = $(this);          
-			src = $(this).attr('src');
+            src = $(this).attr('src');
 			// START of the de-duplicator (excepted line "last_book_name..." above)
 				var book_file_format = src.slice(src.lastIndexOf(".")+1, src.lastIndexOf("?")); // CBZ, CBR and PDF or of the book : EPUB, MOBI, AZW, PDF and DJVU
 				var book_name = src.slice(src.lastIndexOf("/")+1,src.lastIndexOf("."));
@@ -3695,9 +3695,10 @@ Reading.mark = [];
 		if  (my_cookie.match('(^|;) ?' + "clickbook" + '=([^;]*)(;|$)')[2] == "open"){
 			var html_url = window.location.origin + "/comicdetails/" + comicid[2];
 			$.get(html_url, function( data_comicdetails ) {
-				var total_pages = $(data_comicdetails).find("#details_size").text().split("page")[0] * 1;
-				$("img[src*='"+comicid[2]+"']").parent().prop("href","/comicreader/reader.html#?docId=" + comicid[2] + "&startIndex=0&type=comic&nbPages=" + total_pages + "&storeBookmarksInCookies=false");
-				$("img[src*='"+comicid[2]+"']").parent().prop("onclick","");
+                var total_pages = $(data_comicdetails).find("#details_size").text().split("page")[0] * 1;
+                var imageSelector = "img[src*='/comics/"+comicid[2]+"']";
+				$(imageSelector).parent().prop("href","/comicreader/reader.html#?docId=" + comicid[2] + "&startIndex=0&type=comic&nbPages=" + total_pages + "&storeBookmarksInCookies=false");
+                $(imageSelector).parent().prop("onclick",""); 
 			});
 		};
 	    }
@@ -3719,7 +3720,7 @@ Reading.mark = [];
                       } else {
 						if (page_num != '0'){ // case readd or reading but we don't know the total number of pages of this comic 
 							Reading.mark[c_id] = page_num * 1 + 1; // save bookmark
-							var html_url = window.location.origin + "/comicdetails/" + c_id;
+                            var html_url = window.location.origin + "/comicdetails/" + c_id;             
 							$.get(html_url, function( data_comicdetails ) { // Ubooquity Webservice "comicdetails"
 								let book_number = data_comicdetails.slice(data_comicdetails.indexOf("/comics/")+8,);
 								book_number = book_number.slice(0,book_number.indexOf("/"));
